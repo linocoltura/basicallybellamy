@@ -3,6 +3,7 @@
         document.addEventListener("keydown", doKeyDown);
         document.addEventListener("keyup", doKeyUp);
         var frames = setInterval(move, 16);
+        var drones = setInterval(spawndrones, 500);
 
     })
 
@@ -16,6 +17,10 @@
     var bellamyoffset = 0;
     var bellamyspeed = 5;
     var reloadmeterpercentage = 90;
+    var dronespeed = 3;
+    var dronespawnenabled = true;
+    var maxdronespeed = 5;
+    var mindronespeed = 10;
 
 
     var keypress = {
@@ -33,7 +38,9 @@
         } else if (goingright && bellamyoffset <= 1200) {
             bellamyoffset += bellamyspeed;
             $('#bellamy').css('left', bellamyoffset);
-        } else {}
+        }
+
+
 
         $('.plectrum').each(function (i, obj) {
             var amount = $(this).css('bottom').replace(/[^-\d\.]/g, '')
@@ -47,6 +54,35 @@
             $('#bellamy').attr("src", 'images/basicallybellamy2.png');
         }
 
+        $('.drone').each(function (i, obj) {
+            //            var amount = $(this).css('left').replace(/[^-\d\.]/g, '')
+            //            $(this).css('left', parseInt($(this).css('left').replace(/[^-\d\.]/g, '')) + dronespeed + 'px')
+
+
+            if (parseInt($(this).css('left').replace(/[^-\d\.]/g, '')) > 1500) {
+                $(this).remove();
+            }
+
+        });
+    }
+
+    function spawndrones() {
+        var drone = $('<img />', {
+            class: 'drone',
+            src: 'images/drone.png',
+        });
+        var chance = Math.random() < 0.2 ? true : false;
+        console.log(chance);
+        if (chance && dronespawnenabled) {
+            $("#canvas").append(drone);
+            var speed = Math.floor(Math.random() * (maxdronespeed - mindronespeed + 1) + mindronespeed);
+            console.log(speed);
+            $(drone).css('animation-duration', speed + 's')
+            dronespawnenabled = false;
+            window.setTimeout(function () {
+                dronespawnenabled = true;
+            }, 1000)
+        }
     }
 
     function doKeyDown(e) {

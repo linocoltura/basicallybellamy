@@ -1,7 +1,7 @@
     * {
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         -moz-tap-highlight-color: rgba(0, 0, 0, 0);
-	tap-highlight-color: rgba(0, 0, 0, 0);
+        tap-highlight-color: rgba(0, 0, 0, 0);
     }
     
     #preload-01 {
@@ -27,6 +27,7 @@
         top: 10px;
         color: white;
         width: 80px;
+        z-index: 9999;
     }
     
     #score {
@@ -131,9 +132,15 @@
     }
     
     .drone {
-        position: relative;
-        left: 0;
         top: 0;
+        animation-name: dronemove;
+        animation-iteration-count: 1;
+        animation-timing-function: linear;
+        width: 100px;
+        left: -120px;
+        top: 30px;
+        position: absolute;
+        z-index: 10
     }
     
     .plectrum {
@@ -177,24 +184,61 @@
     
     @keyframes shine {
         0 {
-            opacity: 0.7
+            opacity: 0.6
         }
         20% {
             opacity: 1
         }
         40% {
-            opacity: 0.6
+            opacity: 0.5
         }
         50% {
             opacity: 1
         }
         70% {
-            opacity: 0.5
+            opacity: 0.4
         }
         90% {
             opacity: 0.7
         }
         100% {
             opacity: 1
+        }
+    }
+    
+    @keyframes dronemove {
+        0% {
+            left: -120px;
+            transform: translateY(5px)
+        }
+        10% {
+            transform: translateY(-5px)
+        }
+        20% {
+            transform: translateY(5px)
+        }
+        30% {
+            transform: translateY(-5px)
+        }
+        40% {
+            transform: translateY(5px)
+        }
+        50% {
+            transform: translateY(-5px)
+        }
+        60% {
+            transform: translateY(5px)
+        }
+        70% {
+            transform: translateY(-5px)
+        }
+        80% {
+            transform: translateY(5px)
+        }
+        90% {
+            transform: translateY(-5px)
+        }
+        100% {
+            left: 1400px;
         }
     }
