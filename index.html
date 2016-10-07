@@ -18,17 +18,55 @@
 
 <body>
     <div id="canvas">
-        <img id="bellamy" src="images/basicbellamy.png" alt="">
-
+        <img id="bellamy" onclick="volume();" src="images/basicbellamy.png" alt="">
+        <img src="images/volume.png" id="vol" alt="">
         <div id="info">
             <span id="score">score <span id="scorenumber">0</span></span>
-            <span id="hp">hp 3</span>
-            <span id="morganmeter"></span>
+            <span id="hp">
+                <img class="hp" src="images/hp.png" alt="">
+                <img class="hp" src="images/hp.png" alt="">
+                <img class="hp" src="images/hp.png" alt="">
+            </span>
+            <span id="morganmeter"><span id="morganbar"></span></span>
             <span id="reload"><span id="reloadanimationbar"></span></span>
+            <img id="infoplectrum" src="images/plectrum.png" alt="">
+            <img id="infomorgan" src="images/mm.png" alt="">
         </div>
         <img src="images/stagefront.png" alt="" id="frontstage">
         <img src="images/lights.png" alt="" id="lights">
+        <img src="images/blank.png" alt="" id="spl">
+        <img src="images/morgan.png" alt="" id="morgan">
+        <img src="images/overlay-01.png" id="overlay" alt="">
+        <div id="info2">
+            <span id="killed"></span>
+            <span id="scoreafter"></span>
+            <span id="highscoreafter"></span>
+            <span id="play" onclick="play();">Play</span>
+        </div>
     </div>
+
+    <div id="contain">
+        <div id="faq">
+            <span class="big">Credits</span>
+            <p>Game - /u/CitizenMisphrased</p>
+            <p>Music - /u/Grifsgames</p>
+            <br>
+            <br>
+            <span class="big">Info</span>
+            <p>Made from scratch in HTML, CSS, JS &amp; JQuery</p>
+            <p>Software: Brackets, Photoshop, Illustrator</p>
+            <p>Tested in the latest versions of Chrome, Moz, Edge &amp; Opera</p>
+            <p>I am not a game developer, I study something with web, code &amp; design. This is just an overly complicated website really</p>
+            <p>You can report bugs if you're running an updated, stable OS with a recent version of the browsers mentioned above</p>
+            <p>I worked hard on this, you better enjoy it!</p>
+            <br>
+            <p>- /u/CitizenMisphrased</p>
+        </div>
+        <div id="reddit">
+
+        </div>
+    </div>
+
 </body>
 
 </html>
