@@ -626,11 +626,7 @@
             break;
 
         case keypress.SPACE:
-			if (morganmeter >= 100) {
-                morgan();
-                morganmeter = 0;
-                $('#morganbar').css('height', morganmeter + '%');
-            }
+			//
             break;
 
         }
