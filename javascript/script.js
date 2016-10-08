@@ -111,6 +111,11 @@
                 e.preventDefault();
                 return false;
             }
+			if(e.keyCode == 32 && e.target == document.body) {
+				e.preventDefault();
+				play();
+				return false;
+			}
             return true;
         });
     })
@@ -618,11 +623,14 @@
             goingleft = false;
             $('#bellamy').css('transform', 'scaleX(1)')
             isflipped = false;
-
             break;
 
         case keypress.SPACE:
-            //
+			if (morganmeter >= 100) {
+                morgan();
+                morganmeter = 0;
+                $('#morganbar').css('height', morganmeter + '%');
+            }
             break;
 
         }
