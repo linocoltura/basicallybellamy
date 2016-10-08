@@ -208,6 +208,7 @@ p {
     line-height: 1.1em;
     font-size: 0.8em;
     margin-bottom: 10px;
+    color: #d0d0d0
 }
 
 #contain {
@@ -216,6 +217,7 @@ p {
     display: block;
     margin-bottom: 100px;
     overflow: hidden;
+    position: relative;
 }
 
 #overlay {
@@ -232,6 +234,17 @@ p {
     transform: translateX(-50%);
     top: 35%;
     z-index: 99
+}
+
+footer {
+    display: block;
+    overflow: hidden;
+    clear: both;
+    float: left;
+    color: #808080;
+    margin-top: 50px;
+    font-style: italic;
+    font-size: 0.8em;
 }
 
 #play {

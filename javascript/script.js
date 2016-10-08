@@ -8,13 +8,30 @@
             if (!voltoggle) {
                 theme.volume = 0;
                 intro.volume = 0;
+                explsound.volume = 0;
+                hitsound.volume = 0;
+                morgansound.volume = 0;
+                plectrumsound.volume = 0;
+                upsound.volume = 0;
                 voltoggle = true;
                 $('#vol').css('opacity', '0.6')
+
+                $('audio').each(function (i, obj) {
+                        $(this).volume = 0;
+                    }
+
+                );
+
             } else {
-                theme.volume = 0.8;
-                intro.volume = 0.8;
+                theme.volume = musicvol;
+                intro.volume = musicvol;
+                explsound.volume = soundvol;
+                hitsound.volume = soundvol;
+                morgansound.volume = soundvol;
+                plectrumsound.volume = soundvol;
+                upsound.volume = soundvol;
                 voltoggle = false;
-                $('#vol').css('opacity', '1')
+                $('#vol').css('opacity', '1');
             }
         }
 
@@ -44,19 +61,45 @@
             this.play();
         }, false);
 
-        theme.volume = 0.8;
-        intro.volume = 0.8;
+        explsound = document.createElement('audio');
+        explsound.setAttribute('src', 'sound/sound_expl.wav');
+        $.get();
+        explsound.addEventListener("load", function () {
+            explsound.play();
+        }, true);
+        hitsound = document.createElement('audio');
+        hitsound.setAttribute('src', 'sound/sound_hit.wav');
+        $.get();
+        hitsound.addEventListener("load", function () {
+            hitsound.play();
+        }, true);
+        morgansound = document.createElement('audio');
+        morgansound.setAttribute('src', 'sound/sound_morgan.wav');
+        $.get();
+        morgansound.addEventListener("load", function () {
+            morgansound.play();
+        }, true);
+        plectrumsound = document.createElement('audio');
+        plectrumsound.setAttribute('src', 'sound/sound_plectrum.wav');
+        $.get();
+        plectrumsound.addEventListener("load", function () {
+            plectrumsound.play();
+        }, true);
+        upsound = document.createElement('audio');
+        upsound.setAttribute('src', 'sound/sound_up.wav');
+        $.get();
+        upsound.addEventListener("load", function () {
+            upsound.play();
+        }, true);
 
-        //        document.addEventListener("keydown", doKeyDown);
-        //        document.addEventListener("keyup", doKeyUp);
-        //        var frames = setInterval(move, 16);
-        //        var drones = setInterval(spawndrones, 500);
-        //        var dronesright = setInterval(spawndronesright, 500);
-        //        var bombs = setInterval(spawnbombs, 200);
-        //        var bombsright = setInterval(spawnbombsright, 200);
-        //        var spawndelays = setInterval(delay, 15000)
-
-
+        explsound.volume = soundvol;
+        hitsound.volume = soundvol;
+        morgansound.volume = soundvol;
+        plectrumsound.volume = soundvol;
+        upsound.volume = soundvol;
+        //
+        theme.volume = musicvol;
+        intro.volume = musicvol;
 
         var ar = new Array(33, 34, 35, 36, 37, 38, 39, 40);
 
@@ -71,6 +114,12 @@
             return true;
         });
     })
+
+    var explsound;
+    var hitsound;
+    var morgansound;
+    var plectrumsound;
+    var upsound;
 
     var theme;
     var intro;
@@ -107,6 +156,14 @@
     var invincible = false;
     var morganmeter = 0;
     var isplaying = false;
+    var musicvol = 0.2;
+    var soundvol = 1;
+
+    var time1;
+    var time2;
+    var time3;
+    var time4;
+    var time5;
 
     var keypress = {
         LEFT: 37,
@@ -171,34 +228,56 @@
             dronesright = setInterval(spawndronesright, 500);
             bombs = setInterval(spawnbombs, 200);
             bombsright = setInterval(spawnbombsright, 200);
-            spawndelays = setInterval(delay, 15000);
+            spawndelays = setInterval(delay, 18000);
 
             document.addEventListener("keydown", doKeyDown);
             document.addEventListener("keyup", doKeyUp);
 
-            window.setTimeout(function () {
+            clearTimeout(time1);
+            clearTimeout(time2);
+            clearTimeout(time3);
+            clearTimeout(time4);
+            clearTimeout(time5);
+
+            maxdronespeed = 7;
+            mindronespeed = 15;
+            dronespawnchance = 0.1;
+            bombspawnchance = 0.03;
+
+            time1 = window.setTimeout(function () {
                 maxdronespeed = 7;
-                dronespawnchance = 0.2;
+                mindronespeed = 15;
+                dronespawnchance = 0.15;
                 bombspawnchance = 0.03;
             }, 10000)
 
-            window.setTimeout(function () {
+            time2 = window.setTimeout(function () {
                 maxdronespeed = 6;
-                dronespawnchance = 0.25;
-                bombspawnchance = 0.035;
+                mindronespeed = 13;
+                dronespawnchance = 0.2;
+                bombspawnchance = 0.04;
             }, 20000)
 
-            window.setTimeout(function () {
+            time3 = window.setTimeout(function () {
                 maxdronespeed = 5;
+                mindronespeed = 12;
                 dronespawnchance = 0.35;
-                bombspawnchance = 0.04;
+                bombspawnchance = 0.05;
             }, 40000)
 
-            window.setTimeout(function () {
+            time4 = window.setTimeout(function () {
                 maxdronespeed = 4;
+                mindronespeed = 11;
                 dronespawnchance = 0.5;
-                bombspawnchance = 0.05;
+                bombspawnchance = 0.055;
             }, 60000)
+
+            time5 = window.setTimeout(function () {
+                maxdronespeed = 2;
+                mindronespeed = 7;
+                dronespawnchance = 0.6;
+                bombspawnchance = 0.07;
+            }, 80000)
 
             $('#overlay').fadeOut();
             $('#info2').fadeOut();
@@ -215,7 +294,7 @@
         window.setTimeout(function () {
             dronespawnenabled = true;
             dronespawnenabled2 = true;
-        }, 5000)
+        }, 2000)
     }
 
     function move() {
@@ -250,6 +329,7 @@
 
             if ($(".plectrum")[0]) {
                 if (collision($(this), $('.plectrum'))) {
+                    explsound.play();
                     explode($(this));
                     if (!$(this).hasClass('dead')) {
                         score++;
@@ -259,8 +339,9 @@
                             morganmeter += 10;
                             $('#morganbar').css('height', morganmeter + '%')
                         }
-                        if (morganmeter >= 100) {
+                        if (morganmeter >= 100 && morganmeter < 109) {
                             $('#infomorgan').css('animation-name', 'pulsate');
+                            upsound.play();
                         }
                     }
                 }
@@ -276,6 +357,7 @@
 
             if ($(".plectrum")[0]) {
                 if (collision($(this), $('.plectrum'))) {
+                    explsound.play();
                     explode($(this));
                     if (!$(this).hasClass('dead')) {
                         score++;
@@ -308,6 +390,7 @@
                     $('#bellamy').css('height', '270px')
                     $(this).addClass('dead')
                     invincible = true;
+                    hitsound.play();
                     window.setTimeout(function () {
                         $('#bellamy').css('height', 'auto');
                         $('#bellamy').css('opacity', '0.3');
@@ -410,7 +493,7 @@
         });
         var height = Math.floor(Math.random() * (50 - 0 + 1) + 0);
         var chance = Math.random() < dronespawnchance ? true : false;
-        if (chance && dronespawnenabled) {
+        if (chance && dronespawnenabled && ($('.drone').length + $('.droneright').length) < 9) {
             var speed = Math.floor(Math.random() * (maxdronespeed - mindronespeed + 1) + mindronespeed);
             $(drone).css('animation-duration', speed + 's');
             $(drone).css('top', height + 'px')
@@ -429,7 +512,7 @@
         });
         var height = Math.floor(Math.random() * (50 - 0 + 1) + 0);
         var chance = Math.random() < dronespawnchance ? true : false;
-        if (chance && dronespawnenabled2) {
+        if (chance && dronespawnenabled2 && ($('.drone').length + $('.droneright').length) < 9) {
             $("#canvas").append(drone);
             var speed = Math.floor(Math.random() * (maxdronespeed - mindronespeed + 1) + mindronespeed);
             $(drone).css('animation-duration', speed + 's');
@@ -567,6 +650,7 @@
 
     function attack() {
         if (attackenabled) {
+            plectrumsound.play();
             var plectrum = $('<img />', {
                 class: 'plectrum',
                 src: 'images/plectrum.png',
@@ -596,9 +680,11 @@
     }
 
     function morgan() {
+        morgansound.play();
         dronespawnenabled = false;
         dronespawnenabled2 = false;
         score += 5;
+        $('#scorenumber').html(score);
 
         window.setTimeout(function () {
             $('#spl').attr("src", 'images/0.gif');
@@ -621,7 +707,7 @@
         window.setTimeout(function () {
             dronespawnenabled = true;
             dronespawnenabled2 = true;
-        }, 3000)
+        }, 4000)
 
         window.setTimeout(function () {
             $('.d').each(function (i, obj) {
