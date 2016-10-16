@@ -1,7 +1,8 @@
     $(document).ready(function () {
-
+	'use strict';
+		
         document.getElementById('vol').addEventListener("click", function () {
-            vo()
+            vo();
         }, true);
 
         function vo() {
