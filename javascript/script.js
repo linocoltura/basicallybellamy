@@ -120,21 +120,11 @@
         });
     })
 
-    var explsound;
-    var hitsound;
-    var morgansound;
-    var plectrumsound;
-    var upsound;
+    var explsound, hitsound, morgansound, plectrumsound, upsound;
 
-    var theme;
-    var intro;
+    var theme, intro;
 
-    var frames;
-    var drones;
-    var dronesright;
-    var bombs;
-    var bombsright;
-    var spawndelays;
+    var frames, drones, dronesright, bombs, bombsright, spawndelays;
 
 
     var voltoggle = false;
@@ -164,11 +154,7 @@
     var musicvol = 0.2;
     var soundvol = 1;
 
-    var time1;
-    var time2;
-    var time3;
-    var time4;
-    var time5;
+    var time1, time2, time3, time4, time5;
 
     var keypress = {
         LEFT: 37,
